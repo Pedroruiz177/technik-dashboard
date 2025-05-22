@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import { navbarLinks } from "@/constants";
@@ -11,6 +11,18 @@ import { cn } from "@/utils/cn";
 import PropTypes from "prop-types";
 
 export const Sidebar = forwardRef(({ collapsed }, ref) => {
+    // Estado que armazena os títulos dos menus abertos
+    const [openMenus, setOpenMenus] = useState([]);
+
+    // Função para abrir/fechar submenu ao clicar no link principal
+    const toggleMenu = (label) => {
+        if (openMenus.includes(label)) {
+            setOpenMenus(openMenus.filter((item) => item !== label));
+        } else {
+            setOpenMenus([...openMenus, label]);
+        }
+    };
+
     return (
         <aside
             ref={ref}
@@ -33,6 +45,7 @@ export const Sidebar = forwardRef(({ collapsed }, ref) => {
                 />
                 {!collapsed && <p className="text-lg font-medium text-slate-900 transition-colors dark:text-slate-50">Logoipsum</p>}
             </div>
+
             <div className="flex w-full flex-col gap-y-4 overflow-y-auto overflow-x-hidden p-3 [scrollbar-width:_thin]">
                 {navbarLinks.map((navbarLink) => (
                     <nav
@@ -40,18 +53,54 @@ export const Sidebar = forwardRef(({ collapsed }, ref) => {
                         className={cn("sidebar-group", collapsed && "md:items-center")}
                     >
                         <p className={cn("sidebar-group-title", collapsed && "md:w-[45px]")}>{navbarLink.title}</p>
+
                         {navbarLink.links.map((link) => (
-                            <NavLink
+                            <div
                                 key={link.label}
-                                to={link.path}
-                                className={cn("sidebar-item", collapsed && "md:w-[45px]")}
+                                className="w-full"
                             >
-                                <link.icon
-                                    size={22}
-                                    className="flex-shrink-0"
-                                />
-                                {!collapsed && <p className="whitespace-nowrap">{link.label}</p>}
-                            </NavLink>
+                                {/* Se tiver subLinks, faz clique para abrir/fechar */}
+                                {link.subLinks ? (
+                                    <button
+                                        type="button"
+                                        onClick={() => toggleMenu(link.label)}
+                                        className={cn("sidebar-item flex w-full items-center justify-between", collapsed && "md:w-[45px]")}
+                                    >
+                                        <div className="flex items-center gap-x-2">
+                                            <link.icon size={22} />
+                                            {!collapsed && <p className="whitespace-nowrap">{link.label}</p>}
+                                        </div>
+                                        {/* Indicador de aberto/fechado */}
+                                        {!collapsed && <span className="text-sm">{openMenus.includes(link.label) ? "▾" : "▸"}</span>}
+                                    </button>
+                                ) : (
+                                    <NavLink
+                                        to={link.path}
+                                        className={cn("sidebar-item", collapsed && "md:w-[45px]")}
+                                    >
+                                        <link.icon size={22} />
+                                        {!collapsed && <p className="whitespace-nowrap">{link.label}</p>}
+                                    </NavLink>
+                                )}
+
+                                {/* Renderiza os sublinks só se o menu estiver aberto */}
+                                {!collapsed && link.subLinks && openMenus.includes(link.label) && (
+                                    <div className="ml-6 mt-1 flex flex-col gap-y-1">
+                                        {link.subLinks.map((subLink) => (
+                                            <NavLink
+                                                key={subLink.label}
+                                                to={subLink.path}
+                                                className={cn(
+                                                    "sidebar-subitem flex items-center gap-x-2 text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100",
+                                                )}
+                                            >
+                                                <subLink.icon size={16} />
+                                                <span>{subLink.label}</span>
+                                            </NavLink>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
                         ))}
                     </nav>
                 ))}

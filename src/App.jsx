@@ -4,6 +4,16 @@ import { ThemeProvider } from "@/contexts/theme-context";
 
 import Layout from "@/routes/layout";
 import DashboardPage from "@/routes/dashboard/page";
+import UsersPage from "./routes/dashboard/customers";
+import NewCustomerPage from "./routes/dashboard/newuser";
+import MinhaConta from "./pages/MInhaConta";
+import Configuracoes from "./pages/Configuracoes";
+import Login from "./pages/login";
+import Cadastro from "./pages/cadastro"; // Importa a página de cadastro aqui
+import Autentication from "./pages/autentication";
+import CreditCard from "./routes/dashboard/cards";
+import AnalyticPage from "./routes/dashboard/analytics.JSX";
+import InvoicePage from "./routes/dashboard/InvoicePage";
 
 function App() {
     const router = createBrowserRouter([
@@ -17,7 +27,7 @@ function App() {
                 },
                 {
                     path: "analytics",
-                    element: <h1 className="title">Analytics</h1>,
+                    element: <AnalyticPage />,
                 },
                 {
                     path: "reports",
@@ -25,23 +35,23 @@ function App() {
                 },
                 {
                     path: "customers",
-                    element: <h1 className="title">Customers</h1>,
+                    element: <UsersPage />,
                 },
                 {
                     path: "new-customer",
-                    element: <h1 className="title">New Customer</h1>,
+                    element: <NewCustomerPage />,
                 },
                 {
                     path: "verified-customers",
                     element: <h1 className="title">Verified Customers</h1>,
                 },
                 {
-                    path: "products",
-                    element: <h1 className="title">Products</h1>,
+                    path: "cards",
+                    element: <CreditCard />,
                 },
                 {
-                    path: "new-product",
-                    element: <h1 className="title">New Product</h1>,
+                    path: "InvoicePage",
+                    element: <InvoicePage />,
                 },
                 {
                     path: "inventory",
@@ -51,7 +61,27 @@ function App() {
                     path: "settings",
                     element: <h1 className="title">Settings</h1>,
                 },
+                {
+                    path: "minha-conta",
+                    element: <MinhaConta />,
+                },
+                {
+                    path: "configuracoes",
+                    element: <Configuracoes />,
+                },
             ],
+        },
+        {
+            path: "/login",
+            element: <Login />,
+        },
+        {
+            path: "/cadastro", // rota do cadastro
+            element: <Cadastro />,
+        },
+        {
+            path: "/2fa",
+            element: <Autentication />,
         },
     ]);
 

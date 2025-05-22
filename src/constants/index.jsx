@@ -1,4 +1,4 @@
-import { ChartColumn, Home, NotepadText, Package, PackagePlus, Settings, ShoppingBag, UserCheck, UserPlus, Users } from "lucide-react";
+import { ChartColumn, Home, NotepadText, Package, PackagePlus, Settings, ShoppingBag, UserCheck, UserPlus, Users, CreditCard, Newspaper } from "lucide-react";
 
 import ProfileImage from "@/assets/profile-image.jpg";
 import ProductImage from "@/assets/product-image.jpg";
@@ -13,7 +13,7 @@ export const navbarLinks = [
                 path: "/",
             },
             {
-                label: "Analytics",
+                label: "Análise Geral",
                 icon: ChartColumn,
                 path: "/analytics",
             },
@@ -25,10 +25,31 @@ export const navbarLinks = [
         ],
     },
     {
-        title: "Customers",
+        title: "FINANCEIRO",
         links: [
             {
-                label: "Customers",
+                label: "Cartões",
+                icon: CreditCard,
+                path: "/cards",
+            },
+            {
+                label: "Faturas",
+                icon: Newspaper,
+                path: "/InvoicePage",
+            },
+            {
+                label: "Compras",
+                icon: ShoppingBag,
+                path: "/inventory",
+            },
+        ],
+    },
+
+    {
+        title: "RH",
+        links: [
+            {
+                label: "Usuários",
                 icon: Users,
                 path: "/customers",
             },
@@ -45,32 +66,12 @@ export const navbarLinks = [
         ],
     },
     {
-        title: "Products",
-        links: [
-            {
-                label: "Products",
-                icon: Package,
-                path: "/products",
-            },
-            {
-                label: "New product",
-                icon: PackagePlus,
-                path: "/new-product",
-            },
-            {
-                label: "Inventory",
-                icon: ShoppingBag,
-                path: "/inventory",
-            },
-        ],
-    },
-    {
         title: "Settings",
         links: [
             {
                 label: "Settings",
                 icon: Settings,
-                path: "/settings",
+                path: "/Configuracoes",
             },
         ],
     },

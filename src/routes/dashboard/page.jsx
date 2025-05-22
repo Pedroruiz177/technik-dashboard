@@ -38,7 +38,7 @@ const DashboardPage = () => {
                         <p className="card-title">Total Paid Orders</p>
                     </div>
                     <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950">
-                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">$16,000</p>
+                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">$160,540</p>
                         <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600">
                             <TrendingUp size={18} />
                             12%
@@ -53,7 +53,7 @@ const DashboardPage = () => {
                         <p className="card-title">Total Customers</p>
                     </div>
                     <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950">
-                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">15,400k</p>
+                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">145</p>
                         <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600">
                             <TrendingUp size={18} />
                             15%
